@@ -38,14 +38,13 @@ const introProjects = [
   }
 ];
 
-// Datos para las skins de armas - USANDO IMÁGENES DE EJEMPLO (placeholder)
+// Datos para las skins de armas - CON TUS IMÁGENES LOCALES
 const weaponProjects = [
   {
     id: "gold-666",
     name: "GOLD 666",
     title: "GOLD 666",
-    // Usando imágenes de placeholder de Unsplash como ejemplo
-    image: "https://images.unsplash.com/photo-1587500141763-7c0e1c5e2b0e?w=800&auto=format&fit=crop",
+    image: "/images/portfolio/gold-666.png",
     description: "Forged in the depths. The 'GOLD 666' skin isn't for the weak. An infernal flame pattern runs down the barrel, marking your enemies with a damnation seal before their fall. Perfect for the most feared member of your gang.",
     features: ["Infernal Flame Effect", "Dark Metallic Finish", "Demonic Details", "Glows in Darkness"],
     icon: <Flame className="w-5 h-5" />,
@@ -55,7 +54,7 @@ const weaponProjects = [
     id: "crystal",
     name: "CRYSTAL",
     title: "CRYSTAL",
-    image: "https://images.unsplash.com/photo-1595590424283-b8f17842773f?w=800&auto=format&fit=crop",
+    image: "/images/portfolio/crystal.png",
     description: "Pure and lethal. This skin transforms your weapon into a crystalline energy artifact. With a translucent finish and blinding light reflections, every shot seems to release the power of an unstable geode. Exclusivity and purchasing power.",
     features: ["Translucent Crystal Effect", "Dynamic Reflections", "Mystical Glow", "Precious Gem Aspect"],
     icon: <Gem className="w-5 h-5" />,
@@ -65,7 +64,7 @@ const weaponProjects = [
     id: "tmh",
     name: "TMH",
     title: "TMH",
-    image: "https://images.unsplash.com/photo-1587500141763-7c0e1c5e2b0e?w=800&auto=format&fit=ca",
+    image: "/images/portfolio/tmh.png",
     description: "Tactical design for covert operations. The TMH skin combines urban camouflage patterns with carbon fiber details. Go unnoticed in the city shadows, but when you strike, the precision is surgical.",
     features: ["Urban Camo Pattern", "Carbon Fiber Details", "Tactical Matte Finish", "Enhanced Visual Ergonomics"],
     icon: <Shield className="w-5 h-5" />,
@@ -75,7 +74,7 @@ const weaponProjects = [
     id: "bandana",
     name: "BANDANA",
     title: "BANDANA",
-    image: "https://images.unsplash.com/photo-1587500141763-7c0e1c5e2b0e?w=800&auto=format&fit=cb",
+    image: "/images/portfolio/bandana.png",
     description: "Street style meets firepower. The BANDANA skin features graffiti-inspired patterns and urban textures that represent the heart of gang culture. Bold, unapologetic, and instantly recognizable.",
     features: ["Graffiti-Inspired Pattern", "Urban Textures", "Bold Color Scheme", "Instant Recognition"],
     icon: <Sparkles className="w-5 h-5" />,
@@ -85,7 +84,7 @@ const weaponProjects = [
     id: "bluegem",
     name: "BLUEGEM",
     title: "BLUEGEM",
-    image: "https://images.unsplash.com/photo-1595590424283-b8f17842773f?w=800&auto=format&fit=cq",
+    image: "/images/portfolio/bluegem.png",
     description: "Rare as a precious stone. The BLUEGEM skin gives your weapon a deep sapphire finish with reflective properties that catch the light. A status symbol for those who appreciate the finer things in life — and in crime.",
     features: ["Deep Sapphire Finish", "Light Reflective Properties", "Precious Stone Aesthetic", "Rarity Status Symbol"],
     icon: <Droplet className="w-5 h-5" />,
@@ -128,7 +127,7 @@ const ProjectCard = ({ project, onClick, type }) => {
             </div>
           </>
         ) : (
-          // Imagen de skin
+          // Imagen de skin - AHORA USA TUS IMÁGENES LOCALES
           <>
             {!imageError ? (
               <img
@@ -326,9 +325,7 @@ export const PortfolioPage = () => {
                 className="w-12 h-[2px] bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-8"
               />
               
-              {/* Título con estilo SUPER VISIBLE - varias opciones, prueba cuál funciona */}
-              
-              {/* OPCIÓN 1: Texto blanco sólido con sombra */}
+              {/* Título con estilo SUPER VISIBLE */}
               <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-4">
                 <span className="text-white">Our </span>
                 <span className="text-white font-black" style={{ 
@@ -337,27 +334,6 @@ export const PortfolioPage = () => {
                   Arsenal
                 </span>
               </h1>
-              
-              {/* OPCIÓN 2: Texto con degradado y borde blanco (descomenta para probar) 
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-4">
-                <span className="text-white">Our </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400" style={{ 
-                  WebkitTextStroke: '1px white',
-                  textShadow: '0 0 30px rgba(168, 85, 247, 0.8)'
-                }}>
-                  Arsenal
-                </span>
-              </h1>
-              */}
-              
-              {/* OPCIÓN 3: Texto con fondo de gradiente y texto transparente (más sutil pero visible) 
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-4">
-                <span className="text-white">Our </span>
-                <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
-                  Arsenal
-                </span>
-              </h1>
-              */}
               
               <motion.p
                 initial={{ opacity: 0 }}
