@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "../../components/layout/navbar";
 import { Footer } from "../../components/layout/footer";
-import { Play, X, Skull, Zap, Shield, Droplet, Flame, Snowflake, Sparkles } from "lucide-react";
+import { Play, X, Skull, Zap, Shield, Droplet, Flame, Snowflake, Sparkles, Gem } from "lucide-react";
 
 // Array de proyectos de video (Intros)
 const introProjects = [
@@ -10,90 +10,103 @@ const introProjects = [
     id: "gang-intro-11",
     title: "GANG INTRO #11",
     tagline: "Urban Warfare. No Rules.",
-    description: "Una intro cargada de tensión y estilo urbano. Con una edición frenética, efectos de glitch y una paleta de colores fría, este video establece el tono perfecto para una facción callejera dominante. Cada fotograma está diseñado para transmitir poder y peligro inminente.",
+    description: "A high-energy intro packed with tension and urban style. With frenetic editing, glitch effects, and a cold color palette, this video sets the perfect tone for a dominant street faction. Every frame is designed to convey power and imminent danger.",
     youtubeId: "r_YEzA9cPt4",
     features: [
-      "Estilo Visual Único y Agresivo",
-      "Efectos de Glitch y Distorsión",
-      "Edición de Alto Impacto",
-      "Paleta de Colores Fría y Cinemática",
-      "Ritmo Perfecto para Gang RP"
+      "Unique Aggressive Visual Style",
+      "Glitch & Distortion Effects",
+      "High-Impact Editing",
+      "Cold Cinematic Color Palette",
+      "Perfect Rhythm for Gang RP"
     ],
     category: "intro"
   },
   {
     id: "gang-intro-6",
     title: "GANG INTRO | #6",
-    tagline: "El Poder de la Oscuridad.",
-    description: "Una pieza cinematográfica que sumerge al espectador en la atmósfera de las bandas callejeras. Con tomas que destacan el lujo y el peligro, y una banda sonora que retumba en el pecho, esta intro es una declaración de intenciones. Ideal para el líder de una facción que no conoce la derrota.",
+    tagline: "The Power of Darkness.",
+    description: "A cinematic piece that immerses the viewer in the atmosphere of street gangs. With shots highlighting luxury and danger, and a soundtrack that rumbles in your chest, this intro is a statement of intent. Ideal for the leader of a faction that knows no defeat.",
     youtubeId: "zeZVU112w8A",
     features: [
-      "Atmósfera Cinematográfica Oscura",
-      "Tomas Dinámicas y de Alto Contraste",
-      "Transiciones Fluidas y Poderosas",
-      "Diseño de Sonido Inmersivo",
-      "Lista para Usar en tu Servidor"
+      "Dark Cinematic Atmosphere",
+      "Dynamic High-Contrast Shots",
+      "Smooth & Powerful Transitions",
+      "Immersive Sound Design",
+      "Ready to Use in Your Server"
     ],
     category: "intro"
   }
 ];
 
-// Datos para las skins de armas (usando imágenes de placeholder y descripciones épicas)
+// Datos para las skins de armas con los nombres CORRECTOS
 const weaponProjects = [
   {
-    id: "666-skin",
-    title: "SKIN 'DEMON'S MARK'",
-    image: "/api/placeholder/400/300", // Placeholder, idealmente subirías las imágenes a tu proyecto
-    description: "Forjada en las profundidades. La skin '666' no es para almas débiles. Un patrón de llama infernal recorre el cañón, marcando a tus enemigos con un sello de perdición antes de su caída. Perfecta para el miembro más temido de tu banda.",
-    features: ["Efecto de Llamas Infernales", "Acabado Metálico Oscuro", "Detalles Satánicos", "Brillo en la Oscuridad"],
-    icon: <Flame className="w-5 h-5" />
+    id: "gold-666",
+    name: "GOLD 666",
+    title: "GOLD 666",
+    image: "/images/portfolio/gold-666.png", // Asegúrate de tener esta imagen
+    description: "Forged in the depths. The 'GOLD 666' skin isn't for the weak. An infernal flame pattern runs down the barrel, marking your enemies with a damnation seal before their fall. Perfect for the most feared member of your gang.",
+    features: ["Infernal Flame Effect", "Dark Metallic Finish", "Demonic Details", "Glows in Darkness"],
+    icon: <Flame className="w-5 h-5" />,
+    color: "from-orange-600 to-red-600"
   },
   {
-    id: "crystal-skin",
-    title: "SKIN 'CRYSTAL CORE'",
-    image: "/api/placeholder/400/300",
-    description: "Pura y letal. Esta skin transforma tu arma en un artefacto de energía cristalina. Con un acabado translúcido y reflejos de luz cegadores, cada disparo parece liberar el poder de un geoda inestable. Exclusividad y poder adquisitivo.",
-    features: ["Efecto de Cristal Translúcido", "Reflejos Dinámicos", "Brillo Místico", "Aspecto de Gema Preciosa"],
-    icon: <Sparkles className="w-5 h-5" />
+    id: "crystal",
+    name: "CRYSTAL",
+    title: "CRYSTAL",
+    image: "/images/portfolio/crystal.png",
+    description: "Pure and lethal. This skin transforms your weapon into a crystalline energy artifact. With a translucent finish and blinding light reflections, every shot seems to release the power of an unstable geode. Exclusivity and purchasing power.",
+    features: ["Translucent Crystal Effect", "Dynamic Reflections", "Mystical Glow", "Precious Gem Aspect"],
+    icon: <Gem className="w-5 h-5" />,
+    color: "from-cyan-500 to-blue-600"
   },
   {
-    id: "tmf-micro",
-    title: "SKIN 'TMF URBAN'",
-    image: "/api/placeholder/400/300",
-    description: "Diseño táctico para operaciones encubiertas. La skin TMF Micro combina un patrón de camuflaje urbano con detalles de fibra de carbono. Pasa desapercibido entre las sombras de la ciudad, pero cuando atacas, la precisión es quirúrgica.",
-    features: ["Patrón de Camuflaje Urbano", "Detalles en Fibra de Carbono", "Acabado Mate Táctico", "Ergonomía Visual Mejorada"],
-    icon: <Shield className="w-5 h-5" />
+    id: "tmh",
+    name: "TMH",
+    title: "TMH",
+    image: "/images/portfolio/tmh.png",
+    description: "Tactical design for covert operations. The TMH skin combines urban camouflage patterns with carbon fiber details. Go unnoticed in the city shadows, but when you strike, the precision is surgical.",
+    features: ["Urban Camo Pattern", "Carbon Fiber Details", "Tactical Matte Finish", "Enhanced Visual Ergonomics"],
+    icon: <Shield className="w-5 h-5" />,
+    color: "from-gray-700 to-gray-900"
   },
   {
-    id: "new-drop-prev1",
-    title: "SKIN 'DIGITAL DROP #1'",
-    image: "/api/placeholder/400/300",
-    description: "La primera entrega de nuestra nueva colección 'Digital Drop'. Un estilo neo-acero con patrones geométricos que recuerdan a un fallo en la matriz. Tu arma no solo dispara, desestabiliza la realidad de tu oponente.",
-    features: ["Patrón Geométrico Digital", "Efecto de Glitch Sutil", "Aspecto de Acero Líquido", "Edición Limitada"],
-    icon: <Zap className="w-5 h-5" />
+    id: "bandana",
+    name: "BANDANA",
+    title: "BANDANA",
+    image: "/images/portfolio/bandana.png",
+    description: "Street style meets firepower. The BANDANA skin features graffiti-inspired patterns and urban textures that represent the heart of gang culture. Bold, unapologetic, and instantly recognizable.",
+    features: ["Graffiti-Inspired Pattern", "Urban Textures", "Bold Color Scheme", "Instant Recognition"],
+    icon: <Sparkles className="w-5 h-5" />,
+    color: "from-red-600 to-yellow-600"
   },
   {
-    id: "mini1-skin",
-    title: "SKIN 'SHADOW MINI'",
-    image: "/api/placeholder/400/300",
-    description: "Pequeña pero mortal. La versión compacta de nuestras skins de élite. Un acabado negro mate que absorbe la luz, perfecto para asesinatos sigilosos en los callejones más oscuros de Los Santos. Nadie te verá venir.",
-    features: ["Acabado Negro Mate Absorbente", "Diseño Compacto y Letal", "Sin Reflejos", "Máximo Sigilo"],
-    icon: <Droplet className="w-5 h-5" />
+    id: "bluegem",
+    name: "BLUEGEM",
+    title: "BLUEGEM",
+    image: "/images/portfolio/bluegem.png",
+    description: "Rare as a precious stone. The BLUEGEM skin gives your weapon a deep sapphire finish with reflective properties that catch the light. A status symbol for those who appreciate the finer things in life — and in crime.",
+    features: ["Deep Sapphire Finish", "Light Reflective Properties", "Precious Stone Aesthetic", "Rarity Status Symbol"],
+    icon: <Droplet className="w-5 h-5" />,
+    color: "from-blue-600 to-indigo-900"
   },
   {
-    id: "crystal-skin-2",
-    title: "SKIN 'FROST CRYSTAL'",
-    image: "/api/placeholder/400/300",
-    description: "La variante gélida de nuestra línea 'Crystal'. Un frío que quema. El acabado de hielo permanente no solo es estético, sino que congela el alma de tus rivales antes de que la bala impacte. Un icono de estatus para los que dominan el frío del negocio.",
-    features: ["Efecto de Hielo Permanente", "Brillo Polar", "Textura de Escarcha", "Edición Invernal"],
-    icon: <Snowflake className="w-5 h-5" />
+    id: "crystal-variant",
+    name: "CRYSTAL",
+    title: "CRYSTAL",
+    image: "/images/portfolio/crystal-2.png",
+    description: "The frozen variant of our Crystal line. A cold that burns. The permanent ice finish isn't just aesthetic — it freezes your rivals' souls before the bullet hits. A status icon for those who command the cold of the business.",
+    features: ["Permanent Ice Effect", "Polar Glow", "Frost Texture", "Winter Edition"],
+    icon: <Snowflake className="w-5 h-5" />,
+    color: "from-blue-400 to-purple-600"
   }
 ];
 
 // Componente para la cuadrícula de proyectos (reutilizable)
 const ProjectCard = ({ project, onClick, type }) => {
-  const IconComponent = type === 'intro' ? Play : project.icon;
   const isIntro = type === 'intro';
+  const gradientFrom = isIntro ? 'from-purple-600' : project.color?.split(' ')[0] || 'from-purple-600';
+  const gradientTo = isIntro ? 'to-pink-600' : project.color?.split(' ')[1]?.replace('to-', '') || 'to-pink-600';
   
   return (
     <motion.div
@@ -125,16 +138,16 @@ const ProjectCard = ({ project, onClick, type }) => {
             </div>
           </>
         ) : (
-          // Si es skin, mostrar imagen de placeholder con overlay de gradiente
+          // Si es skin, mostrar imagen con placeholder por ahora
           <>
-            <img
-              src={project.image}
-              alt={project.title}
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-            />
+            <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+              <span className="text-6xl opacity-30">
+                {project.icon}
+              </span>
+            </div>
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-black/80" />
-            <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm p-2 rounded-full border border-purple-500/30">
-              {React.cloneElement(project.icon, { className: "w-5 h-5 text-purple-400" })}
+            <div className={`absolute top-4 right-4 bg-gradient-to-r ${project.color || 'from-purple-600 to-pink-600'} p-2 rounded-full`}>
+              {React.cloneElement(project.icon, { className: "w-5 h-5 text-white" })}
             </div>
           </>
         )}
@@ -142,14 +155,16 @@ const ProjectCard = ({ project, onClick, type }) => {
         {/* Contenido de la tarjeta (siempre visible) */}
         <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
           <h3 className="text-xl font-bold text-white mb-1 group-hover:text-purple-400 transition-colors duration-300">
-            {project.title}
+            {isIntro ? project.title : project.name}
           </h3>
           {isIntro && <p className="text-sm text-gray-300 italic mb-2">{project.tagline}</p>}
-          <p className="text-xs text-gray-400 line-clamp-2">{project.description.substring(0, 100)}...</p>
+          <p className="text-xs text-gray-400 line-clamp-2">
+            {isIntro ? project.description.substring(0, 100) : project.description.substring(0, 100)}...
+          </p>
         </div>
         
         <motion.div
-          className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-purple-500 to-pink-500"
+          className={`absolute bottom-0 left-0 h-[2px] bg-gradient-to-r ${isIntro ? 'from-purple-500 to-pink-500' : project.color || 'from-purple-500 to-pink-500'}`}
           initial={{ width: "0%" }}
           whileHover={{ width: "100%" }}
           transition={{ duration: 0.4 }}
@@ -199,11 +214,15 @@ const ProjectModal = ({ project, onClose, type }) => {
                 className="w-full h-full"
               />
             ) : (
-              <img 
-                src={project.image} 
-                alt={project.title} 
-                className="w-full h-full object-cover"
-              />
+              <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                <div className="text-center">
+                  <div className="text-8xl mb-4 opacity-50 flex justify-center">
+                    {project.icon}
+                  </div>
+                  <h3 className="text-3xl font-bold text-white mb-2">{project.name}</h3>
+                  <p className="text-gray-400">Image coming soon</p>
+                </div>
+              </div>
             )}
           </motion.div>
 
@@ -214,7 +233,9 @@ const ProjectModal = ({ project, onClose, type }) => {
               transition={{ delay: 0.3 }}
               className="md:col-span-3 space-y-6"
             >
-              <h2 className="text-3xl md:text-5xl font-bold text-white">{project.title}</h2>
+              <h2 className="text-3xl md:text-5xl font-bold text-white">
+                {type === 'intro' ? project.title : project.name}
+              </h2>
               {type === 'intro' && (
                 <p className="text-purple-400/80 italic text-lg">{project.tagline}</p>
               )}
@@ -228,7 +249,7 @@ const ProjectModal = ({ project, onClose, type }) => {
               className="md:col-span-2 space-y-4"
             >
               <h3 className="text-sm uppercase tracking-widest text-gray-400 font-semibold">
-                {type === 'intro' ? 'Características Clave' : 'Detalles de la Skin'}
+                {type === 'intro' ? 'Key Features' : 'Skin Details'}
               </h3>
               <ul className="space-y-3">
                 {project.features.map((feature, index) => (
@@ -292,7 +313,7 @@ export const PortfolioPage = () => {
                 className="w-12 h-[2px] bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-8"
               />
               <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-4">
-                Nuestro <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Arsenal</span>
+                Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Arsenal</span>
               </h1>
               <motion.p
                 initial={{ opacity: 0 }}
@@ -300,7 +321,7 @@ export const PortfolioPage = () => {
                 transition={{ delay: 0.5 }}
                 className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto"
               >
-                Explora nuestras intros cinematográficas y skins de armas exclusivas. Diseñadas para dominar FiveM.
+                Explore our cinematic intros and exclusive weapon skins. Built to dominate FiveM.
               </motion.p>
             </motion.div>
           </div>
