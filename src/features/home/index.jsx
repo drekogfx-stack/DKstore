@@ -36,7 +36,7 @@ const Features = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.5 }}
         className="max-w-2xl mb-16"
       >
         <div className="w-8 h-[1px] bg-white/50 mb-6" />
@@ -55,16 +55,15 @@ const Features = () => {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ y: -6, transition: { duration: 0.1 } }}
-            className="group relative glass rounded-2xl p-7 hover:border-white/20 transition-all duration-500"
+            transition={{ duration: 0.4, delay: index * 0.05 }}
+            whileHover={{ y: -4 }}
+            className="bg-white/5 backdrop-blur-sm rounded-2xl p-7 border border-white/10"
           >
-            <div className="absolute inset-0 rounded-2xl bg-white/[0.03] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-            <div className="relative z-10">
-              <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-5 group-hover:bg-white/20 transition-colors duration-300">
+            <div>
+              <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-5">
                 <span className="text-xl">{feature.icon}</span>
               </div>
-              <h3 className="text-lg font-semibold mb-2 text-white group-hover:text-white transition-colors duration-300">{feature.title}</h3>
+              <h3 className="text-lg font-semibold mb-2 text-white">{feature.title}</h3>
               <p className="text-sm text-gray-400 leading-relaxed">{feature.description}</p>
             </div>
           </motion.div>
@@ -92,12 +91,11 @@ const Stats = () => {
         if (entry.isIntersecting && !hasAnimated) {
           setHasAnimated(true);
           
-          // Animar cada contador
           stats.forEach((stat, index) => {
             let start = 0;
             const end = stat.value;
-            const duration = 2000; // 2 segundos
-            const increment = end / (duration / 16); // 60fps aprox
+            const duration = 2000;
+            const increment = end / (duration / 16);
             
             const timer = setInterval(() => {
               start += increment;
@@ -137,23 +135,15 @@ const Stats = () => {
     <section className="container px-4 py-28" ref={statsRef}>
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
         {stats.map((stat, index) => (
-          <motion.div
+          <div
             key={index}
-            initial={{ opacity: 0, y: 30 }}
-            animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: index * 0.15 }}
-            whileHover={{ 
-              y: -6,
-              scale: 1.02,
-              transition: { duration: 0.2 }
-            }}
-            className="glass rounded-2xl p-7 hover:border-white/20 transition-all duration-150"
+            className="bg-white/5 backdrop-blur-sm rounded-2xl p-7 border border-white/10"
           >
             <div className="text-4xl md:text-5xl font-bold text-gradient mb-2">
               {counts[index]}{stat.suffix}
             </div>
             <div className="text-gray-400 text-sm tracking-wide">{stat.label}</div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>
@@ -175,7 +165,7 @@ const Comparison = () => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.5 }}
         className="max-w-2xl mx-auto text-center mb-16"
       >
         <div className="w-8 h-[1px] bg-white/50 mx-auto mb-6" />
@@ -188,72 +178,44 @@ const Comparison = () => {
       </motion.div>
       
       <div className="max-w-2xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="grid grid-cols-3 gap-4 mb-4 px-4"
-        >
+        <div className="grid grid-cols-3 gap-4 mb-4 px-4">
           <div></div>
           <div className="text-center text-sm font-semibold text-white">DK</div>
           <div className="text-center text-sm font-semibold text-gray-400">Generic</div>
-        </motion.div>
+        </div>
         
         <div className="space-y-2">
           {features.map((item, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.07 }}
-              className="grid grid-cols-3 gap-4 glass rounded-xl p-4 items-center"
+              className="grid grid-cols-3 gap-4 bg-white/5 backdrop-blur-sm rounded-xl p-4 items-center border border-white/10"
             >
               <span className="text-sm text-white">{item.feature}</span>
               <div className="flex justify-center">
                 {item.us && (
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + index * 0.07, type: "spring", stiffness: 300 }}
-                    className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center"
-                  >
+                  <div className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
                     <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                  </motion.div>
+                  </div>
                 )}
               </div>
               <div className="flex justify-center">
                 {item.them ? (
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + index * 0.07, type: "spring" }}
-                    className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center"
-                  >
+                  <div className="w-7 h-7 rounded-full bg-white/15 flex items-center justify-center">
                     <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                  </motion.div>
+                  </div>
                 ) : (
-                  <motion.div
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 + index * 0.07, type: "spring" }}
-                    className="w-7 h-7 rounded-full bg-red-500/10 flex items-center justify-center"
-                  >
+                  <div className="w-7 h-7 rounded-full bg-red-500/10 flex items-center justify-center">
                     <svg className="w-4 h-4 text-red-500/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                     </svg>
-                  </motion.div>
+                  </div>
                 )}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -268,7 +230,7 @@ const CTASection = ({ openEstimator }) => {
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.7 }}
+        transition={{ duration: 0.5 }}
         className="max-w-4xl mx-auto text-center"
       >
         <div className="w-8 h-[1px] bg-white/50 mx-auto mb-6" />
@@ -278,14 +240,12 @@ const CTASection = ({ openEstimator }) => {
         <p className="text-gray-400 text-lg mb-8">
           Use our price calculator to get an instant quote for your project
         </p>
-        <motion.button
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.97 }}
+        <button
           onClick={openEstimator}
           className="button-gradient px-8 py-3.5 rounded-full font-medium cursor-pointer"
         >
           Calculate Price
-        </motion.button>
+        </button>
       </motion.div>
     </section>
   );
@@ -304,7 +264,7 @@ export const HomePage = () => {
     <div className="min-h-screen bg-black text-white">
       <Navbar />
       
-      {/* Hero Section with Animations */}
+      {/* Hero Section */}
       <section className="relative h-screen w-full overflow-hidden bg-black">
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
         
@@ -312,14 +272,14 @@ export const HomePage = () => {
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: 40 }}
-            transition={{ duration: 1, delay: 0.8 }}
+            transition={{ duration: 0.8 }}
             className="w-10 h-[1px] bg-white/60 mb-8"
           />
           
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, delay: 0.3 }}
+            transition={{ duration: 0.8 }}
             className="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tight text-white leading-[1.1] mb-6"
           >
             Where Your Vision <br />
@@ -329,7 +289,7 @@ export const HomePage = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
+            transition={{ duration: 0.6 }}
             className="text-gray-400 text-base md:text-lg max-w-lg mb-10"
           >
             Premium Blender animations, loading screens & graphics for your communities.
@@ -338,39 +298,32 @@ export const HomePage = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
+            transition={{ duration: 0.6 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
+            <button
               onClick={() => navigate("/portfolio")}
               className="button-gradient px-6 py-3"
             >
               Explore Our Work
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
+            </button>
+            <button
               onClick={() => navigate("/shop")}
               className="border border-white/20 px-6 py-3 rounded-md hover:bg-white/10 transition"
             >
               Shop Now
-            </motion.button>
+            </button>
           </motion.div>
         </div>
 
-        <motion.button
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 1, repeat: Infinity, repeatType: "reverse" }}
+        <button
           onClick={scrollToContent}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer z-10 text-white/50 hover:text-white/70 transition-colors"
         >
           <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7-7-7m14-6l-7 7-7-7" />
           </svg>
-        </motion.button>
+        </button>
       </section>
 
       {/* Content Sections */}
