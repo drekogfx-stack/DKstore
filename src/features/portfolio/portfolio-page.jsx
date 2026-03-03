@@ -61,11 +61,11 @@ const weaponProjects = [
     color: "from-cyan-500 to-blue-600"
   },
   {
-    id: "tmh",
-    name: "TMH",
-    title: "TMH",
+    id: "tmf",
+    name: "TMF",
+    title: "TMF",
     image: "/images/portfolio/tmh.png",
-    description: "Tactical design for covert operations. The TMH skin combines urban camouflage patterns with carbon fiber details. Go unnoticed in the city shadows, but when you strike, the precision is surgical.",
+    description: "Tactical design for covert operations. The TMF skin combines urban camouflage patterns with carbon fiber details. Go unnoticed in the city shadows, but when you strike, the precision is surgical.",
     features: ["Urban Camo Pattern", "Carbon Fiber Details", "Tactical Matte Finish", "Enhanced Visual Ergonomics"],
     icon: <Shield className="w-5 h-5" />,
     color: "from-gray-700 to-gray-900"
