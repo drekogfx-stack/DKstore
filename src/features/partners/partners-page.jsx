@@ -23,7 +23,7 @@ export const PartnersPage = () => {
       </div>
 
       <main className="pt-20 pb-20">
-        {/* Hero Section */}
+        {/* Hero Section with Logo */}
         <section className="container px-4 py-12">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
@@ -36,11 +36,23 @@ export const PartnersPage = () => {
                 OPENING MARCH 6 - 7:30 PM
               </Badge>
               
-              <h1 className="text-5xl md:text-7xl font-black mb-4">
-                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
-                  TMHRP
-                </span>
-              </h1>
+              {/* Logo de TMHRP */}
+              <motion.div
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="flex justify-center mb-6"
+              >
+                <img 
+                  src="/images/tmhrp.png" 
+                  alt="TMHRP Logo" 
+                  className="w-48 h-48 md:w-64 md:h-64 object-contain"
+                  onError={(e) => {
+                    console.log("Error loading logo, using fallback");
+                    e.target.style.display = 'none';
+                  }}
+                />
+              </motion.div>
               
               <p className="text-xl md:text-2xl text-gray-300 mb-6">
                 TMHRP arrives and does it big.
@@ -61,7 +73,7 @@ export const PartnersPage = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
               className="mb-12"
             >
               <Card className="glass border-purple-500/20 bg-gradient-to-br from-purple-900/20 to-pink-900/20">
@@ -111,7 +123,7 @@ export const PartnersPage = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
               className="mb-12"
             >
               <Card className="glass border-orange-500/20 bg-gradient-to-br from-orange-900/20 to-red-900/20 relative overflow-hidden">
@@ -157,7 +169,7 @@ export const PartnersPage = () => {
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.5 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
               className="mb-12"
             >
               <Card className="glass border-purple-500/20 bg-gradient-to-br from-purple-900/30 to-pink-900/30">
@@ -190,11 +202,11 @@ export const PartnersPage = () => {
               </Card>
             </motion.div>
 
-            {/* Countdown (Optional) */}
+            {/* Countdown */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
+              transition={{ delay: 0.9 }}
               className="text-center"
             >
               <p className="text-gray-500 text-sm">
