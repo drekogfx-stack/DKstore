@@ -311,7 +311,7 @@ export const PortfolioPage = () => {
       </div>
 
       <main className="pt-20 pb-20 relative z-10">
-        {/* Hero Section - Título CORREGIDO */}
+        {/* Hero Section - Título CORREGIDO con estilo MUY VISIBLE */}
         <section className="container px-4 py-16 md:py-24">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
@@ -326,13 +326,38 @@ export const PortfolioPage = () => {
                 className="w-12 h-[2px] bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-8"
               />
               
-              {/* Título CORREGIDO - texto mucho más visible */}
+              {/* Título con estilo SUPER VISIBLE - varias opciones, prueba cuál funciona */}
+              
+              {/* OPCIÓN 1: Texto blanco sólido con sombra */}
               <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-4">
                 <span className="text-white">Our </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-purple-500 to-pink-500">
+                <span className="text-white font-black" style={{ 
+                  textShadow: '0 0 20px rgba(168, 85, 247, 1), 0 0 40px rgba(236, 72, 153, 1)'
+                }}>
                   Arsenal
                 </span>
               </h1>
+              
+              {/* OPCIÓN 2: Texto con degradado y borde blanco (descomenta para probar) 
+              <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-4">
+                <span className="text-white">Our </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400" style={{ 
+                  WebkitTextStroke: '1px white',
+                  textShadow: '0 0 30px rgba(168, 85, 247, 0.8)'
+                }}>
+                  Arsenal
+                </span>
+              </h1>
+              */}
+              
+              {/* OPCIÓN 3: Texto con fondo de gradiente y texto transparente (más sutil pero visible) 
+              <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-4">
+                <span className="text-white">Our </span>
+                <span className="bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+                  Arsenal
+                </span>
+              </h1>
+              */}
               
               <motion.p
                 initial={{ opacity: 0 }}
