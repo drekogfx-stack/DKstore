@@ -1,184 +1,206 @@
+import React from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "../../components/layout/navbar";
 import { Footer } from "../../components/layout/footer";
 import { Card, CardContent } from "../../components/ui/card";
 import { Badge } from "../../components/ui/badge";
 import { Button } from "../../components/ui/button";
-import { ExternalLink, Users, Award, Star, TrendingUp } from "lucide-react";
-
-const partners = [
-  {
-    name: "Storm - Automated PC Checker",
-    logo: "/images/storm-logo.png",
-    description: "Advanced Methods. Automated PC Checking. International Support. All in one click. Supports FiveM, RageMP, AltV, GTA San Andreas, Roblox, and more.",
-    tier: "Gold",
-    projects: 1,
-    specialty: "PC Checking Solutions",
-    website: "https://stormss.cc/"
-  }
-];
-
-const benefits = [
-  {
-    title: "Creative Collaboration",
-    description: "Work directly with industry leaders on cutting-edge projects",
-    icon: Users,
-    color: "text-primary"
-  },
-  {
-    title: "Award-Winning Work",
-    description: "Our partnerships have resulted in multiple industry awards",
-    icon: Award,
-    color: "text-yellow-400"
-  },
-  {
-    title: "Premium Quality",
-    description: "Delivering Hollywood-grade VFX for every project",
-    icon: Star,
-    color: "text-purple-400"
-  },
-  {
-    title: "Growth Together",
-    description: "Building long-term relationships that drive mutual success",
-    icon: TrendingUp,
-    color: "text-green-400"
-  }
-];
-
-const getTierColor = (tier) => {
-  switch(tier) {
-    case "Premium":
-      return "bg-gradient-to-r from-purple-500 to-pink-500";
-    case "Gold":
-      return "bg-gradient-to-r from-yellow-400 to-orange-500";
-    default:
-      return "bg-gradient-to-r from-blue-500 to-cyan-500";
-  }
-};
+import { Calendar, Gift, Trophy, Clock, Sparkles, Diamond } from "lucide-react";
 
 export const PartnersPage = () => {
+  const openDiscord = () => {
+    window.open("https://discord.gg/tmhrp", "_blank");
+  };
+
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-hidden">
+    <div className="min-h-screen bg-black text-white overflow-hidden">
       <Navbar />
       
       <div className="fixed inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-primary/5" />
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-secondary/10 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-purple-950/20 to-black" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-pink-600/20 rounded-full blur-3xl animate-pulse delay-1000" />
       </div>
 
       <main className="pt-20 pb-20">
-        <section className="container px-4 py-20">
-          <div className="max-w-6xl mx-auto">
+        {/* Hero Section */}
+        <section className="container px-4 py-12">
+          <div className="max-w-4xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-center mb-16"
+              transition={{ duration: 0.5 }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Trusted by Industry <span className="text-gradient">Leaders</span>
-              </h2>
-              <p className="text-xl text-muted-foreground">
-                Building the future of entertainment together
+              <Badge className="mb-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white border-0 px-4 py-1">
+                <Calendar className="w-3 h-3 mr-1" />
+                OPENING MARCH 6 - 7:30 PM
+              </Badge>
+              
+              <h1 className="text-5xl md:text-7xl font-black mb-4">
+                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 bg-clip-text text-transparent">
+                  TMHRP
+                </span>
+              </h1>
+              
+              <p className="text-xl md:text-2xl text-gray-300 mb-6">
+                TMHRP arrives and does it big.
               </p>
+              
+              <div className="flex items-center justify-center gap-2 text-lg text-purple-300">
+                <Clock className="w-5 h-5" />
+                <span className="font-semibold">7:30 PM - Don't miss it</span>
+              </div>
             </motion.div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {partners.map((partner, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.1 * index }}
-                >
-                  <Card className="glass border-white/10 hover:border-primary/30 transition-all duration-300 group overflow-hidden">
-                    <div className="aspect-video relative overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20">
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="text-6xl opacity-20">🏢</span>
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                      <div className="absolute bottom-4 left-4">
-                        <Badge className={`${getTierColor(partner.tier)} text-white px-3 py-1`}>
-                          {partner.tier} Partner
-                        </Badge>
-                      </div>
-                    </div>
-                    
-                    <CardContent className="p-6">
-                      <div className="space-y-4">
-                        <div>
-                          <h3 className="text-xl font-bold group-hover:text-primary transition-colors">
-                            {partner.name}
-                          </h3>
-                          <p className="text-muted-foreground text-sm mt-2">
-                            {partner.description}
-                          </p>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4 text-center">
-                          <div>
-                            <p className="text-2xl font-bold text-primary">{partner.projects}</p>
-                            <p className="text-xs text-muted-foreground">Projects</p>
-                          </div>
-                          <div>
-                            <p className="text-sm font-medium">{partner.specialty}</p>
-                            <p className="text-xs text-muted-foreground">Specialty</p>
-                          </div>
-                        </div>
-
-                        <Button 
-                          className="w-full button-gradient hover:scale-105 transition-transform"
-                          onClick={() => window.open(partner.website, "_blank")}
-                        >
-                          Visit Website
-                          <ExternalLink className="ml-2 h-4 w-4" />
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
           </div>
         </section>
 
-        <section className="container px-4 py-20">
-          <div className="max-w-6xl mx-auto">
+        {/* Main Content */}
+        <section className="container px-4 py-12">
+          <div className="max-w-5xl mx-auto">
+            {/* Reward System */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-center mb-16"
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="mb-12"
             >
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Why Partner with <span className="text-gradient">DK</span>
-              </h2>
+              <Card className="glass border-purple-500/20 bg-gradient-to-br from-purple-900/20 to-pink-900/20">
+                <CardContent className="p-8">
+                  <div className="flex items-center gap-3 mb-4">
+                    <Trophy className="w-8 h-8 text-yellow-400" />
+                    <h2 className="text-2xl md:text-3xl font-bold text-white">
+                      Time-Based Reward System
+                    </h2>
+                  </div>
+                  
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center mt-1">
+                          <span className="text-green-400 text-sm">✓</span>
+                        </div>
+                        <p className="text-gray-300">
+                          <span className="text-green-400 font-semibold">Every minute counts:</span> The rewards you earn will be{" "}
+                          <span className="text-yellow-400 font-bold">FOREVER</span>
+                        </p>
+                      </div>
+                      
+                      <div className="flex items-start gap-3">
+                        <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center mt-1">
+                          <span className="text-red-400 text-sm">!</span>
+                        </div>
+                        <p className="text-gray-300">
+                          <span className="text-red-400 font-semibold">ONLY 1 WEEK</span> to claim{" "}
+                          <span className="text-yellow-400 font-bold">ALL</span> accumulated rewards
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="bg-black/40 rounded-xl p-4 border border-purple-500/30">
+                      <h3 className="text-lg font-semibold text-purple-300 mb-2">Rewards Menu</h3>
+                      <p className="text-gray-400 text-sm">
+                        Based on time played in the server, unlock exclusive items that stay with you forever.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {benefits.map((benefit, index) => {
-                const Icon = benefit.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.1 * index }}
+            {/* Opening Day Exclusives */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.5 }}
+              className="mb-12"
+            >
+              <Card className="glass border-orange-500/20 bg-gradient-to-br from-orange-900/20 to-red-900/20 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/20 rounded-full blur-3xl" />
+                <CardContent className="p-8 relative z-10">
+                  <div className="flex items-center gap-3 mb-6">
+                    <Sparkles className="w-8 h-8 text-orange-400" />
+                    <h2 className="text-2xl md:text-3xl font-bold text-white">
+                      OPENING DAY EXCLUSIVES
+                    </h2>
+                  </div>
+                  
+                  <p className="text-lg text-orange-200 mb-6">
+                    Everyone who joins ON OPENING DAY will receive:
+                  </p>
+                  
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {[
+                      { icon: "🦺", title: "Shiny Vest", desc: "FREE" },
+                      { icon: "🎒", title: "Shiny Backpack", desc: "FREE" },
+                      { icon: "🚗", title: "SPECIAL Starter Car", desc: "Day 1 Exclusive" },
+                      { icon: "🎲", title: "GIVEAWAYS", desc: "Throughout the week" }
+                    ].map((item, index) => (
+                      <div key={index} className="bg-black/40 rounded-xl p-4 border border-white/10 text-center hover:border-orange-400/50 transition-all duration-150">
+                        <div className="text-3xl mb-2">{item.icon}</div>
+                        <h3 className="font-semibold text-white">{item.title}</h3>
+                        <p className="text-xs text-orange-300">{item.desc}</p>
+                      </div>
+                    ))}
+                  </div>
+                  
+                  <div className="mt-6 p-4 bg-orange-500/10 rounded-xl border border-orange-500/30">
+                    <p className="text-orange-200 text-center">
+                      After opening, there will be another starter car, but{" "}
+                      <span className="text-yellow-300 font-bold">this one will be UNIQUE and will never be obtainable again.</span>
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Final Summary */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+              className="mb-12"
+            >
+              <Card className="glass border-purple-500/20 bg-gradient-to-br from-purple-900/30 to-pink-900/30">
+                <CardContent className="p-8 text-center">
+                  <Diamond className="w-12 h-12 text-purple-400 mx-auto mb-4" />
+                  
+                  <h3 className="text-2xl font-bold text-white mb-4">
+                    In summary:
+                  </h3>
+                  
+                  <p className="text-lg text-gray-200 mb-6 max-w-2xl mx-auto">
+                    If you're there on opening day, you get unique, special and exclusive items{" "}
+                    <span className="text-purple-300 font-bold">that only the true OG's of TMHRP will have.</span>
+                  </p>
+                  
+                  <div className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-orange-400 mb-6">
+                    The ones there from the start, make the difference.
+                  </div>
+                  
+                  <Button
+                    onClick={openDiscord}
+                    className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 px-8 py-6 text-lg rounded-xl font-bold shadow-lg shadow-purple-600/30 transition-all duration-150 hover:scale-105"
                   >
-                    <Card className="glass border-white/10 text-center h-full">
-                      <CardContent className="pt-6">
-                        <div className="mb-4">
-                          <Icon className={`h-12 w-12 mx-auto ${benefit.color}`} />
-                        </div>
-                        <h3 className="text-lg font-semibold mb-2">{benefit.title}</h3>
-                        <p className="text-muted-foreground text-sm">{benefit.description}</p>
-                      </CardContent>
-                    </Card>
-                  </motion.div>
-                );
-              })}
-            </div>
+                    <span className="flex items-center gap-2">
+                      <img src="/discord-icon.svg" alt="Discord" className="w-5 h-5" />
+                      discord.gg/tmhrp
+                    </span>
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            {/* Countdown (Optional) */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+              className="text-center"
+            >
+              <p className="text-gray-500 text-sm">
+                @everyone · The wait is almost over
+              </p>
+            </motion.div>
           </div>
         </section>
       </main>
