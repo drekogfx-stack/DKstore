@@ -8,7 +8,7 @@ import { Play, X, Skull, Zap, Shield, Droplet, Flame, Snowflake, Sparkles, Gem }
 const introProjects = [
   {
     id: "gang-intro-11",
-    title: "GANG INTRO #11",
+    title: "GANG INTRO #1",
     tagline: "Urban Warfare. No Rules.",
     description: "A high-energy intro packed with tension and urban style. With frenetic editing, glitch effects, and a cold color palette, this video sets the perfect tone for a dominant street faction. Every frame is designed to convey power and imminent danger.",
     youtubeId: "r_YEzA9cPt4",
@@ -23,7 +23,7 @@ const introProjects = [
   },
   {
     id: "gang-intro-6",
-    title: "GANG INTRO | #6",
+    title: "GANG INTRO | #2",
     tagline: "The Power of Darkness.",
     description: "A cinematic piece that immerses the viewer in the atmosphere of street gangs. With shots highlighting luxury and danger, and a soundtrack that rumbles in your chest, this intro is a statement of intent. Ideal for the leader of a faction that knows no defeat.",
     youtubeId: "zeZVU112w8A",
