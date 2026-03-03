@@ -35,8 +35,8 @@ const Features = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
         className="max-w-2xl mb-16"
       >
         <div className="w-8 h-[1px] bg-white/50 mb-6" />
@@ -54,18 +54,16 @@ const Features = () => {
             key={index}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-60px" }}
-            transition={{ duration: 0.4, delay: index * 0.05 }}
-            whileHover={{ y: -4 }}
-            className="bg-white/5 backdrop-blur-sm rounded-2xl p-7 border border-white/10"
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            whileHover={{ y: -5 }}
+            className="bg-white/5 backdrop-blur-sm rounded-2xl p-7 border border-white/10 hover:border-white/20 transition-colors duration-200"
           >
-            <div>
-              <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-5">
-                <span className="text-xl">{feature.icon}</span>
-              </div>
-              <h3 className="text-lg font-semibold mb-2 text-white">{feature.title}</h3>
-              <p className="text-sm text-gray-400 leading-relaxed">{feature.description}</p>
+            <div className="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center mb-5">
+              <span className="text-xl">{feature.icon}</span>
             </div>
+            <h3 className="text-lg font-semibold mb-2 text-white">{feature.title}</h3>
+            <p className="text-sm text-gray-400 leading-relaxed">{feature.description}</p>
           </motion.div>
         ))}
       </div>
@@ -117,7 +115,7 @@ const Stats = () => {
           });
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.3 }
     );
 
     if (statsRef.current) {
@@ -135,15 +133,19 @@ const Stats = () => {
     <section className="container px-4 py-28" ref={statsRef}>
       <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
         {stats.map((stat, index) => (
-          <div
+          <motion.div
             key={index}
-            className="bg-white/5 backdrop-blur-sm rounded-2xl p-7 border border-white/10"
+            initial={{ opacity: 0, y: 30 }}
+            animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+            whileHover={{ y: -5 }}
+            className="bg-white/5 backdrop-blur-sm rounded-2xl p-7 border border-white/10 hover:border-white/20 transition-colors duration-200"
           >
             <div className="text-4xl md:text-5xl font-bold text-gradient mb-2">
               {counts[index]}{stat.suffix}
             </div>
             <div className="text-gray-400 text-sm tracking-wide">{stat.label}</div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </section>
@@ -164,8 +166,8 @@ const Comparison = () => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
         className="max-w-2xl mx-auto text-center mb-16"
       >
         <div className="w-8 h-[1px] bg-white/50 mx-auto mb-6" />
@@ -178,16 +180,26 @@ const Comparison = () => {
       </motion.div>
       
       <div className="max-w-2xl mx-auto">
-        <div className="grid grid-cols-3 gap-4 mb-4 px-4">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="grid grid-cols-3 gap-4 mb-4 px-4"
+        >
           <div></div>
           <div className="text-center text-sm font-semibold text-white">DK</div>
           <div className="text-center text-sm font-semibold text-gray-400">Generic</div>
-        </div>
+        </motion.div>
         
         <div className="space-y-2">
           {features.map((item, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
               className="grid grid-cols-3 gap-4 bg-white/5 backdrop-blur-sm rounded-xl p-4 items-center border border-white/10"
             >
               <span className="text-sm text-white">{item.feature}</span>
@@ -215,7 +227,7 @@ const Comparison = () => {
                   </div>
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -229,8 +241,8 @@ const CTASection = ({ openEstimator }) => {
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
         className="max-w-4xl mx-auto text-center"
       >
         <div className="w-8 h-[1px] bg-white/50 mx-auto mb-6" />
@@ -240,12 +252,15 @@ const CTASection = ({ openEstimator }) => {
         <p className="text-gray-400 text-lg mb-8">
           Use our price calculator to get an instant quote for your project
         </p>
-        <button
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          transition={{ duration: 0.2 }}
           onClick={openEstimator}
           className="button-gradient px-8 py-3.5 rounded-full font-medium cursor-pointer"
         >
           Calculate Price
-        </button>
+        </motion.button>
       </motion.div>
     </section>
   );
@@ -301,29 +316,38 @@ export const HomePage = () => {
             transition={{ duration: 0.6 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <button
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
               onClick={() => navigate("/portfolio")}
               className="button-gradient px-6 py-3"
             >
               Explore Our Work
-            </button>
-            <button
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={{ duration: 0.2 }}
               onClick={() => navigate("/shop")}
-              className="border border-white/20 px-6 py-3 rounded-md hover:bg-white/10 transition"
+              className="border border-white/20 px-6 py-3 rounded-md hover:bg-white/10 transition-colors duration-200"
             >
               Shop Now
-            </button>
+            </motion.button>
           </motion.div>
         </div>
 
-        <button
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.5 }}
           onClick={scrollToContent}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer z-10 text-white/50 hover:text-white/70 transition-colors"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer z-10 text-white/50 hover:text-white/70 transition-colors duration-200"
         >
           <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7-7-7m14-6l-7 7-7-7" />
           </svg>
-        </button>
+        </motion.button>
       </section>
 
       {/* Content Sections */}
