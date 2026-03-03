@@ -38,13 +38,14 @@ const introProjects = [
   }
 ];
 
-// Datos para las skins de armas con los nombres CORRECTOS
+// Datos para las skins de armas - USANDO IMÁGENES DE EJEMPLO (placeholder)
 const weaponProjects = [
   {
     id: "gold-666",
     name: "GOLD 666",
     title: "GOLD 666",
-    image: "/images/portfolio/gold-666.png", // Asegúrate de tener esta imagen
+    // Usando imágenes de placeholder de Unsplash como ejemplo
+    image: "https://images.unsplash.com/photo-1587500141763-7c0e1c5e2b0e?w=800&auto=format&fit=crop",
     description: "Forged in the depths. The 'GOLD 666' skin isn't for the weak. An infernal flame pattern runs down the barrel, marking your enemies with a damnation seal before their fall. Perfect for the most feared member of your gang.",
     features: ["Infernal Flame Effect", "Dark Metallic Finish", "Demonic Details", "Glows in Darkness"],
     icon: <Flame className="w-5 h-5" />,
@@ -54,7 +55,7 @@ const weaponProjects = [
     id: "crystal",
     name: "CRYSTAL",
     title: "CRYSTAL",
-    image: "/images/portfolio/crystal.png",
+    image: "https://images.unsplash.com/photo-1595590424283-b8f17842773f?w=800&auto=format&fit=crop",
     description: "Pure and lethal. This skin transforms your weapon into a crystalline energy artifact. With a translucent finish and blinding light reflections, every shot seems to release the power of an unstable geode. Exclusivity and purchasing power.",
     features: ["Translucent Crystal Effect", "Dynamic Reflections", "Mystical Glow", "Precious Gem Aspect"],
     icon: <Gem className="w-5 h-5" />,
@@ -64,7 +65,7 @@ const weaponProjects = [
     id: "tmh",
     name: "TMH",
     title: "TMH",
-    image: "/images/portfolio/tmh.png",
+    image: "https://images.unsplash.com/photo-1587500141763-7c0e1c5e2b0e?w=800&auto=format&fit=ca",
     description: "Tactical design for covert operations. The TMH skin combines urban camouflage patterns with carbon fiber details. Go unnoticed in the city shadows, but when you strike, the precision is surgical.",
     features: ["Urban Camo Pattern", "Carbon Fiber Details", "Tactical Matte Finish", "Enhanced Visual Ergonomics"],
     icon: <Shield className="w-5 h-5" />,
@@ -74,7 +75,7 @@ const weaponProjects = [
     id: "bandana",
     name: "BANDANA",
     title: "BANDANA",
-    image: "/images/portfolio/bandana.png",
+    image: "https://images.unsplash.com/photo-1587500141763-7c0e1c5e2b0e?w=800&auto=format&fit=cb",
     description: "Street style meets firepower. The BANDANA skin features graffiti-inspired patterns and urban textures that represent the heart of gang culture. Bold, unapologetic, and instantly recognizable.",
     features: ["Graffiti-Inspired Pattern", "Urban Textures", "Bold Color Scheme", "Instant Recognition"],
     icon: <Sparkles className="w-5 h-5" />,
@@ -84,29 +85,18 @@ const weaponProjects = [
     id: "bluegem",
     name: "BLUEGEM",
     title: "BLUEGEM",
-    image: "/images/portfolio/bluegem.png",
+    image: "https://images.unsplash.com/photo-1595590424283-b8f17842773f?w=800&auto=format&fit=cq",
     description: "Rare as a precious stone. The BLUEGEM skin gives your weapon a deep sapphire finish with reflective properties that catch the light. A status symbol for those who appreciate the finer things in life — and in crime.",
     features: ["Deep Sapphire Finish", "Light Reflective Properties", "Precious Stone Aesthetic", "Rarity Status Symbol"],
     icon: <Droplet className="w-5 h-5" />,
     color: "from-blue-600 to-indigo-900"
-  },
-  {
-    id: "crystal-variant",
-    name: "CRYSTAL",
-    title: "CRYSTAL",
-    image: "/images/portfolio/crystal-2.png",
-    description: "The frozen variant of our Crystal line. A cold that burns. The permanent ice finish isn't just aesthetic — it freezes your rivals' souls before the bullet hits. A status icon for those who command the cold of the business.",
-    features: ["Permanent Ice Effect", "Polar Glow", "Frost Texture", "Winter Edition"],
-    icon: <Snowflake className="w-5 h-5" />,
-    color: "from-blue-400 to-purple-600"
   }
 ];
 
-// Componente para la cuadrícula de proyectos (reutilizable)
+// Componente para la cuadrícula de proyectos
 const ProjectCard = ({ project, onClick, type }) => {
   const isIntro = type === 'intro';
-  const gradientFrom = isIntro ? 'from-purple-600' : project.color?.split(' ')[0] || 'from-purple-600';
-  const gradientTo = isIntro ? 'to-pink-600' : project.color?.split(' ')[1]?.replace('to-', '') || 'to-pink-600';
+  const [imageError, setImageError] = useState(false);
   
   return (
     <motion.div
@@ -118,9 +108,9 @@ const ProjectCard = ({ project, onClick, type }) => {
       onClick={onClick}
       className="group relative cursor-pointer overflow-hidden rounded-2xl bg-gradient-to-br from-zinc-900 to-black border border-white/10 hover:border-purple-500/50 transition-all duration-300"
     >
-      <div className="relative w-full h-full min-h-[320px] overflow-hidden">
+      <div className="relative w-full h-64 md:h-72 overflow-hidden">
         {isIntro ? (
-          // Si es intro, mostrar thumbnail de YouTube
+          // Thumbnail de YouTube
           <>
             <img
               src={`https://img.youtube.com/vi/${project.youtubeId}/maxresdefault.jpg`}
@@ -138,28 +128,40 @@ const ProjectCard = ({ project, onClick, type }) => {
             </div>
           </>
         ) : (
-          // Si es skin, mostrar imagen con placeholder por ahora
+          // Imagen de skin
           <>
-            <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-              <span className="text-6xl opacity-30">
-                {project.icon}
-              </span>
-            </div>
+            {!imageError ? (
+              <img
+                src={project.image}
+                alt={project.name}
+                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                onError={() => setImageError(true)}
+              />
+            ) : (
+              <div className={`w-full h-full bg-gradient-to-br ${project.color} flex items-center justify-center`}>
+                <div className="text-center">
+                  <div className="text-6xl mb-2 text-white/50">
+                    {project.icon}
+                  </div>
+                  <p className="text-white/30 text-xs">{project.name}</p>
+                </div>
+              </div>
+            )}
             <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-black/80" />
-            <div className={`absolute top-4 right-4 bg-gradient-to-r ${project.color || 'from-purple-600 to-pink-600'} p-2 rounded-full`}>
+            <div className={`absolute top-4 right-4 bg-gradient-to-r ${project.color} p-2 rounded-full`}>
               {React.cloneElement(project.icon, { className: "w-5 h-5 text-white" })}
             </div>
           </>
         )}
         
-        {/* Contenido de la tarjeta (siempre visible) */}
-        <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+        {/* Contenido de la tarjeta */}
+        <div className="absolute bottom-0 left-0 right-0 p-6 z-10 bg-gradient-to-t from-black via-black/80 to-transparent">
           <h3 className="text-xl font-bold text-white mb-1 group-hover:text-purple-400 transition-colors duration-300">
             {isIntro ? project.title : project.name}
           </h3>
           {isIntro && <p className="text-sm text-gray-300 italic mb-2">{project.tagline}</p>}
           <p className="text-xs text-gray-400 line-clamp-2">
-            {isIntro ? project.description.substring(0, 100) : project.description.substring(0, 100)}...
+            {project.description.substring(0, 100)}...
           </p>
         </div>
         
@@ -174,9 +176,10 @@ const ProjectCard = ({ project, onClick, type }) => {
   );
 };
 
-// Modal para mostrar el detalle del proyecto (video o skin)
+// Modal para el detalle
 const ProjectModal = ({ project, onClose, type }) => {
   if (!project) return null;
+  const [imageError, setImageError] = useState(false);
 
   return (
     <AnimatePresence>
@@ -214,15 +217,26 @@ const ProjectModal = ({ project, onClose, type }) => {
                 className="w-full h-full"
               />
             ) : (
-              <div className="w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-8xl mb-4 opacity-50 flex justify-center">
-                    {project.icon}
+              <>
+                {!imageError ? (
+                  <img 
+                    src={project.image} 
+                    alt={project.name} 
+                    className="w-full h-full object-contain bg-black"
+                    onError={() => setImageError(true)}
+                  />
+                ) : (
+                  <div className={`w-full h-full bg-gradient-to-br ${project.color} flex items-center justify-center`}>
+                    <div className="text-center">
+                      <div className="text-8xl mb-4 text-white/30">
+                        {project.icon}
+                      </div>
+                      <h3 className="text-3xl font-bold text-white mb-2">{project.name}</h3>
+                      <p className="text-gray-400">{project.name}</p>
+                    </div>
                   </div>
-                  <h3 className="text-3xl font-bold text-white mb-2">{project.name}</h3>
-                  <p className="text-gray-400">Image coming soon</p>
-                </div>
-              </div>
+                )}
+              </>
             )}
           </motion.div>
 
@@ -275,7 +289,7 @@ const ProjectModal = ({ project, onClose, type }) => {
   );
 };
 
-// Componente principal de la página de portafolio
+// Página principal
 export const PortfolioPage = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
@@ -289,16 +303,15 @@ export const PortfolioPage = () => {
     <div className="min-h-screen bg-black text-white">
       <Navbar />
       
-      {/* Elementos de fondo atmosféricos */}
+      {/* Elementos de fondo */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-black to-black" />
         <div className="absolute top-20 left-1/4 w-[500px] h-[500px] bg-purple-600/5 rounded-full blur-[120px]" />
         <div className="absolute bottom-20 right-1/4 w-[400px] h-[400px] bg-pink-600/5 rounded-full blur-[100px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-purple-900/5 to-pink-900/5 rounded-full blur-[150px]" />
       </div>
 
       <main className="pt-20 pb-20 relative z-10">
-        {/* Hero Section del Portafolio */}
+        {/* Hero Section - Título CORREGIDO */}
         <section className="container px-4 py-16 md:py-24">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
@@ -312,9 +325,15 @@ export const PortfolioPage = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
                 className="w-12 h-[2px] bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mb-8"
               />
-              <h1 className="text-5xl md:text-7xl font-black tracking-tight text-white mb-4">
-                Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Arsenal</span>
+              
+              {/* Título CORREGIDO - texto mucho más visible */}
+              <h1 className="text-5xl md:text-7xl font-black tracking-tight mb-4">
+                <span className="text-white">Our </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-purple-500 to-pink-500">
+                  Arsenal
+                </span>
               </h1>
+              
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -327,7 +346,7 @@ export const PortfolioPage = () => {
           </div>
         </section>
 
-        {/* Sección: Cinematic Intros */}
+        {/* Sección: Intros */}
         <section className="container px-4 py-16">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -353,14 +372,14 @@ export const PortfolioPage = () => {
           </div>
         </section>
 
-        {/* Separador Visual */}
+        {/* Separador */}
         <div className="container px-4 py-8">
           <div className="max-w-5xl mx-auto">
             <div className="w-full h-px bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
           </div>
         </div>
 
-        {/* Sección: Weapon Skin Collections */}
+        {/* Sección: Skins */}
         <section className="container px-4 py-16">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -389,7 +408,7 @@ export const PortfolioPage = () => {
 
       <Footer />
       
-      {/* Modal para ver el detalle */}
+      {/* Modal */}
       <ProjectModal 
         project={selectedProject} 
         type={selectedType}
